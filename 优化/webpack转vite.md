@@ -90,6 +90,7 @@ babel-plugin-transform-runtime
 webpack中用resolve.ensure实现按需加载
 
 以下附上vite.config.js:
+```
 import vue from "@vitejs/plugin-vue2"
 import viteCompression from "vite-plugin-compression";
 import { defineConfig, loadEnv } from "vite";
@@ -165,5 +166,5 @@ export default ({ command, mode }) => {
     },
   });
 };
-
+```
 
