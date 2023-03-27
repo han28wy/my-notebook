@@ -1,6 +1,7 @@
 遗忘曲线：5min-30min-12h-1d-2d-4d-7d-15d
 
- forEach没有return; 改用for循环，或者用break结束
+ ### forEach没有return; 
+ 改用for循环，或者用break结束
 
  ### <el-table>+tab 组合，
  tab使用一个table组件 出现表格列错 加key<el-table :key= >
@@ -27,7 +28,6 @@
  /deep/.el-checkbox__input.is-disabled .el-checkbox__inner{
     display: none
 }
-
 
 ### 封装element表格，分页部分
 <template>
@@ -90,3 +90,14 @@ export default {
  }
 ### 写一个公共less文件，用class=引入，不在<style>再写一遍
 @import './style.less';
+
+### 纯数字和字母在div里无法换行
+word-break:break-all; （允许在单词内换行。）
+
+### 背景图片要显示在div上面的修改
+原：
+<div1>设置了background-img  <div2> margin-top:-20px 遮挡了div1
+改：
+<div par>设置position:relative; width: ;height: ''
+<img> position:absolute; z-index:999
+<div2> position:absolute; left: ; top:
