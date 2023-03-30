@@ -186,3 +186,8 @@ transform: scale(0.8);
 工具：patch-package
 需要把pathch提交到git，需要在package.json添加"postinstall": "patch-package"
 当其他人执行npm i时候，会自动执行npm run postinstall命令，把补丁放到对应包里
+
+### 封装axios
+对response: 都return response，对http错误的分别处理(可以写一个数组，对应不同error抛出)，鉴权失败的退出登录; 是否为blob,blobTojson
+对error   return Promise.reject(err) 抛出"请求超时或服务器异常，请检查网络或联系管理员！";
+对request: 1 header配置 2 params处理 比如，unformat = 1 就是json传参 3 url处理 config.url = basePath + config.url 4 xss转义 config.data = xssObject(config.data)
