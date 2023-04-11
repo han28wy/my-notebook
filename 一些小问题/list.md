@@ -191,3 +191,10 @@ transform: scale(0.8);
 对response: 都return response，对http错误的分别处理(可以写一个数组，对应不同error抛出)，鉴权失败的退出登录; 是否为blob,blobTojson
 对error   return Promise.reject(err) 抛出"请求超时或服务器异常，请检查网络或联系管理员！";
 对request: 1 header配置 2 params处理 比如，unformat = 1 就是json传参 3 url处理 config.url = basePath + config.url 4 xss转义 config.data = xssObject(config.data)
+
+### tab封装地图和监控来回切换，出现切回地图不显示的问题
+原： 重新setMap v-if重新渲染，不生效
+this.map.setCity('北京市')
+this.map.on('zoomchange', this.zoomchange)
+改后：
+地图由v-if改为v-show

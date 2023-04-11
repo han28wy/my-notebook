@@ -1,0 +1,26 @@
+<html>
+  <body>
+    <div class="loading"></div>
+  </body>
+  <style>
+    .loading {
+      width: 30px;
+      height: 30px;
+      border: 2px solid #000;
+      /* 元素的上边框的颜色 */
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: circle infinite 0.75s linear;
+      /* animation：动画名称 动画时长 动画运动速度 延迟时间 执行次数 往返动画
+animation：动画名称 动画时长  （有这两个即可以完成动画，其它未设置，有默认值） */
+    }
+    @keyframes circle {
+      0% {
+        transform: rotate(0);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</html>
