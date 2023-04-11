@@ -1,8 +1,56 @@
 <html>
   <body>
-    <div class="loading"></div>
+    <!-- 这是一个类似发短信，等待的跳动效果  这个animation的设置可以看一下-->
+    <div class="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </body>
   <style>
-    
+    .loading {
+      width: 150px;
+      height: 10px;
+      display: block;
+    }
+    .loading > div {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      position: relative;
+      background-color: black;
+      animation: ball 2s infinite;
+    }
+    .loading > div:nth-child(1) {
+      animation-delay: -400ms;
+    }
+    .loading > div:nth-child(2) {
+      animation-delay: -200ms;
+    }
+    .loading > div:nth-child(3) {
+      animation-delay: 0ms;
+    }
+    @keyframes ball {
+      0% {
+        opacity: 0;
+        transform: translateY(-145%);
+      }
+      20% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      80% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      90% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(145%);
+      }
+    }
   </style>
 </html>

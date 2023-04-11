@@ -1,8 +1,42 @@
 <html>
+  <!-- 这是一个对称的效果 -->
   <body>
-    <div class="loading"></div>
+    <div class="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </body>
   <style>
-    
+    .loading {
+      width: 150px;
+      height: 10px;
+      display: block;
+      /* 这个配置使中心点固定不动 */
+      text-align: center;
+    }
+    .loading > div {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      position: relative;
+      background-color: black;
+      animation: ball 1s infinite;
+    }
+    @keyframes ball {
+      0%,
+      100% {
+        margin: 0;
+        transform: scale(1);
+      }
+
+      50% {
+        margin: 0 5%;
+        transform: scale(0.65);
+      }
+    }
   </style>
 </html>

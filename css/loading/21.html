@@ -1,0 +1,43 @@
+<html>
+  <body>
+    <!-- 四个球聚合到中间再 圆弧分开的效果 -->
+    <div class="loading">
+      <div class="ball-1"></div>
+      <div class="ball-2"></div>
+      <div class="ball-3"></div>
+      <div class="ball-4"></div>
+    </div>
+  </body>
+  <style type="text/css">
+    .loading{
+      display: block;
+      position: relative;
+    }
+    .loading>div{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: black;
+    }
+    .ball-1{
+      position: absolute;
+      top:0;
+      left:50%
+    }
+    .ball-2{
+      top: 50%;
+    left: 100%;
+    z-index: 2;
+    }
+    .ball-3{
+      top: 100%;
+    left: 50%;
+    z-index: 3;
+    }
+    .ball-4{
+      top: 100%;
+    left: 100%;
+    z-index: 4;
+    }
+  </style>
+</html>
