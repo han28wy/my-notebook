@@ -198,3 +198,12 @@ this.map.setCity('北京市')
 this.map.on('zoomchange', this.zoomchange)
 改后：
 地图由v-if改为v-show
+
+### display:block, inline-block, inline
+区分块级元素（div,img,ul,form,p）行级元素（em，strong，br,input）
+block：创建一个块级元素
+inline:创建行级元素，高度，行高以及底边距不可改变。多个相邻的行内元素排在同一行里，知道页面一行排列不下，才会换新的一行。
+竖直方向的margin无效，水平有效；竖直和水平方向的padding都有效（竖直方向的padding有效，但不会撑开周围的盒子）
+inline-block:
+默认的宽度为内容决定；可以设置宽高，会覆盖默认的宽度
+各个方向的margin和padding都有效;
