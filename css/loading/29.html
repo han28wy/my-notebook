@@ -1,8 +1,50 @@
 <html>
   <body>
-    <div class="loading"></div>
+    <div class="loading">
+      <div class="ball1"></div>
+      <div class="ball2"></div>
+      <div class="ball3"></div>
+    </div>
   </body>
   <style>
+.loading{
+  width: 32px;
+  height: 32px;
+  display: block;
+  position: relative;
+}
+.loading > div {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: black;
+  position:absolute;
+  left:0;
+  top:0;
+  opacity: 0;
+  border: 0 solid black;
+  animation: ball 1s 0s linear infinite;
+}
+.ball2{
+  animation-delay: 0.2s;
+}
+.ball3{
+  animation-delay: 0.2s;
+}
+@keyframes ball {
+  0%{
+    opacity: 0;
+    transform: scale(0);
+  }
+  5% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
    
   </style>
 </html>

@@ -4,40 +4,127 @@
     <div class="loading">
       <div class="ball-1"></div>
       <div class="ball-2"></div>
-      <div class="ball-3"></div>
-      <div class="ball-4"></div>
+      <!-- <div class="ball-3"></div>
+      <div class="ball-4"></div> -->
     </div>
   </body>
   <style type="text/css">
-    .loading{
+    .loading {
       display: block;
       position: relative;
+      width: 8px;
+      height: 8px;
     }
-    .loading>div{
-      width: 10px;
-      height: 10px;
+    .loading > div {
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background-color: black;
+      animation: ball-fussion-ball1 1s 0s ease infinite;
     }
-    .ball-1{
+    .ball-1 {
       position: absolute;
-      top:0;
-      left:50%
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
-    .ball-2{
+    .ball-2 {
+      position: absolute;
       top: 50%;
-    left: 100%;
-    z-index: 2;
+      left: 100%;
+      z-index: 2;
+      transform: translate(-50%, -50%);
+      animation: ball-fussion-ball1 1s 0s ease infinite;
+      animation-name: ball-fussion-ball2;
     }
-    .ball-3{
+    .ball-3 {
+      position: absolute;
       top: 100%;
-    left: 50%;
-    z-index: 3;
+      left: 50%;
+      z-index: 3;
+      animation-name: ball-fussion-ball3;
     }
-    .ball-4{
+    .ball-4 {
+      position: absolute;
       top: 100%;
-    left: 100%;
-    z-index: 4;
+      left: 100%;
+      z-index: 4;
+      animation-name: ball-fussion-ball4;
+    }
+    @keyframes ball-fussion-ball2 {
+      0% {
+        opacity: 0.35;
+      }
+
+      50% {
+        top: 200%;
+        left: 200%;
+        opacity: 1;
+      }
+
+      100% {
+        top: 100%;
+        left: 50%;
+        z-index: 1;
+        opacity: 0.35;
+      }
+    }
+
+    @keyframes ball-fussion-ball1 {
+      0% {
+        opacity: 0.35;
+      }
+
+      50% {
+        top: -100%;
+        left: 200%;
+        opacity: 1;
+      }
+
+      100% {
+        top: 50%;
+        left: 100%;
+        z-index: 2;
+        opacity: 0.35;
+      }
+    }
+
+    @keyframes ball-fussion-ball3 {
+      0% {
+        opacity: 0.35;
+      }
+
+      50% {
+        top: 200%;
+        left: -100%;
+        opacity: 1;
+      }
+
+      100% {
+        top: 50%;
+        left: 0;
+        z-index: 2;
+        opacity: 0.35;
+      }
+    }
+
+    @keyframes ball-fussion-ball4 {
+      0% {
+        opacity: 0.35;
+      }
+
+      50% {
+        top: -100%;
+        left: -100%;
+        opacity: 1;
+      }
+
+      100% {
+        top: 0;
+        left: 50%;
+        z-index: 1;
+        opacity: 0.35;
+      }
     }
   </style>
 </html>
