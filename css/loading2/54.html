@@ -1,8 +1,51 @@
 <html>
+  <!-- 豆腐撞在地上 -->
   <body>
-    <div class="loading"></div>
+    <div class="loading">
+      <div class="cube"></div>
+      <div class="shadow"></div>
+    </div>
   </body>
   <style>
-   
+    .loading {
+      display: block;
+      margin-left: 20px;
+    }
+    .cube {
+      width: 32px;
+      height: 32px;
+      border-radius: 5%;
+      background-color: black;
+      animation: square-jelly-box-animate 0.6s -0.1s linear infinite;
+    }
+    .shadow {
+      display: inline-block;
+      margin-top: 12px;
+      height: 3px;
+      width: 36px;
+      background-color: black;
+      opacity: 0.2;
+      animation: square-jelly-box-shadow 0.6s -0.1s linear infinite;
+    }
+    @keyframes square-jelly-box-animate {
+      25% {
+        transform: translateY(25%) rotate(22.5deg);
+      }
+      50% {
+        border-bottom-right-radius: 50%;
+        transform: translateY(50%) scale(1, 0.9) rotate(45deg);
+      }
+      75% {
+        transform: translateY(25%) rotate(67.5deg);
+      }
+      100% {
+        transform: translateY(0) rotate(90deg);
+      }
+    }
+    @keyframes square-jelly-box-shadow {
+      50% {
+        transform: scale(1.25, 1);
+      }
+    }
   </style>
 </html>

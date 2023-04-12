@@ -1,0 +1,93 @@
+<html>
+  <!-- 吃豆豆 彩色 -->
+  <body>
+    <div class="loading">
+      <div class="shape shape-4">
+        <div class="pac1"></div>
+        <div class="pac2"></div>
+        <div class="eye"></div>
+      </div>
+      <div class="bean1"></div>
+      <div class="bean2"></div>
+      <div class="bean3"></div>
+    </div>
+  </body>
+  <style>
+    .loading {
+      display: block;
+      width: 32px;
+      height: 32px;
+      position: relative;
+    }
+    .pac1,
+    .pac2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      width: 0;
+      height: 0;
+      background: transparent;
+      color: black;
+      border-style: solid;
+      border-width: 16px;
+      border-right-color: transparent;
+      border-radius: 50%;
+    }
+    .pac1 {
+      transform: rotate(-30deg);
+      animation: pacman-rotate-half-up 0.4s ease infinite;
+    }
+    .pac2 {
+      transform: rotate(45deg);
+      animation: pacman-rotate-half-down 0.4s ease infinite;
+    }
+    @keyframes pacman-balls {
+      0% {
+        left: 200%;
+        opacity: 0;
+      }
+      5% {
+        opacity: 0.5;
+      }
+      66% {
+        opacity: 1;
+      }
+      67% {
+        opacity: 0;
+      }
+      100% {
+        left: 0;
+      }
+    }
+    @keyframes pacman-rotate-half-up {
+      0% {
+        transform: rotate(-30deg);
+      }
+      100% {
+        transform: rotate(0);
+      }
+    }
+    @keyframes pacman-rotate-half-down {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform:rotate(45deg);
+      }
+    }
+    .bean1,
+    .bean2,
+    .bean3 {
+      position: absolute;
+      top: 11;
+      left: 25;
+      width: 10px;
+      height: 10px;
+      background-color: black;
+      border-radius: 50%;
+      display: inline-block;
+      /* animation: pacman-balls 2s 0s infinite linear; */
+    }
+  </style>
+</html>

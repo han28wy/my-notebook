@@ -1,8 +1,22 @@
 <html>
-  <body>
-    <div class="loading"></div>
-  </body>
+  <div class="loading"></div>
+
   <style>
-   
+    .loading {
+      display: inline-block;
+      width: 30px;
+      height: 4px;
+      background: #000;
+      animation: loading-animation 1.5s linear infinite;
+    }
+
+    @keyframes loading-animation {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
   </style>
 </html>
