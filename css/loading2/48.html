@@ -1,0 +1,63 @@
+<html>
+  <!-- 类似47 每个div动画时间不一样 -->
+  <body>
+    <div class="loading">
+      <div class="cube1"></div>
+      <div class="cube2"></div>
+      <div class="cube3"></div>
+      <div class="cube4"></div>
+      <div class="cube5"></div>
+    </div>
+  </body>
+  <style>
+    .loading {
+      display: block;
+      position: relative;
+      height: 32px;
+    }
+    .loading > div {
+      display: inline-block;
+      width: 5px;
+      height: 32px;
+      background-color: black;
+    }
+    .cube1 {
+      animation: line-scale 1.2s infinite ease;
+      animation-duration: 0.43s;
+  animation-delay: -0.23s;
+    }
+    .cube2 {
+      animation: line-scale 1.2s infinite ease;
+      animation-duration: 0.62s;
+  animation-delay: -0.32s;
+    }
+    .cube3 {
+      animation: line-scale 1.2s infinite ease;
+      animation-duration: 0.43s;
+  animation-delay: -0.44s;
+    }
+    .cube4 {
+      animation: line-scale 1.2s infinite ease;
+      animation-duration: 0.8s;
+  animation-delay: -0.31s;
+    }
+    .cube5 {
+      animation: line-scale 1.2s infinite ease;
+      animation-duration: 0.74s;
+  animation-delay: -0.24s;
+    }
+    @keyframes line-scale {
+      0% {
+        transform: scaleY(1);
+      }
+
+      50% {
+        transform: scaleY(0.3);
+      }
+
+      100% {
+        transform: scaleY(1);
+      }
+    }
+  </style>
+</html>

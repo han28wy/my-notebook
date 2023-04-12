@@ -1,0 +1,67 @@
+<html>
+  <body>
+    <!-- 轨迹是 沙漏形状，每个小球做三角轨迹运动 -->
+    <div class="loading">
+      <div class="ball1"></div>
+      <div class="ball2"></div>
+    </div>
+  </body>
+  <style>
+    .loading {
+      display: block;
+      position: relative;
+      width: 32px;
+      height: 32px;
+    }
+    .loading > div {
+      display: inline-block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 10px;
+      height: 10px;
+      background-color: black;
+      border-radius: 50%;
+    }
+    .ball1 {
+      animation: ball1 1s 0s ease-in-out infinite;
+    }
+    .ball2 {
+      animation: ball2 1s 0s ease-in-out infinite;
+    }
+    @keyframes ball1 {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      33% {
+        transform: translate(75%, 150%);
+      }
+
+      66% {
+        transform: translate(-75%, 150%);
+      }
+
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+    @keyframes ball2 {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      33% {
+        transform: translate(-75%, -150%);
+      }
+
+      66% {
+        transform: translate(75%, -150%);
+      }
+
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+  </style>
+</html>

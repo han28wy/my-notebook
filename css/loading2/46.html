@@ -1,0 +1,52 @@
+<html>
+  <body>
+    <div class="loading">
+      <div class="cube1"></div>
+      <div class="cube2"></div>
+      <div class="cube3"></div>
+    </div>
+  </body>
+  <style>
+    .loading {
+      display: block;
+      margin-top:50px;
+      position: relative;
+      width: 32px;
+      height: 32px;
+    }
+    .loading > div {
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 14px;
+      height: 14px;
+      background-color: black;
+    }
+    .cube1 {
+      animation: cube 1.5s infinite linear;
+      animation-delay: -0.85s;
+    }
+    .cube2 {
+      animation: cube 1.5s infinite linear;
+      animation-delay: -1.85s;
+    }
+    .cube3 {
+      animation: cube 1.5s infinite linear;
+      animation-delay: -2.85s;
+    }
+    @keyframes cube {
+      0% {
+        transform: translateY(75%) rotate(45deg) scale(0);
+      }
+
+      50% {
+        transform: translateY(-87.5%) rotate(45deg) scale(1);
+      }
+
+      100% {
+        transform: translateY(-212.5%) rotate(45deg) scale(0);
+      }
+    }
+  </style>
+</html>

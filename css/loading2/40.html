@@ -1,0 +1,92 @@
+<html>
+  <body>
+    <!-- 怎么排列成回字形   position不能写在共有属性里，不生效-->
+    <!-- animation-delay不生效！！ -->
+    <div class="loading">
+      <div class="ball1"></div>
+      <div class="ball2"></div>
+      <div class="ball3"></div>
+      <div class="ball4"></div>
+      <div class="ball5"></div>
+      <div class="ball6"></div>
+      <div class="ball7"></div>
+      <div class="ball8"></div>
+    </div>
+  </body>
+  <style>
+    .loading {
+      display: block;
+      position: relative;
+      width: 26px;
+      height: 26px;
+    }
+    .loading > div {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background-color: black;
+      border-radius: 100%;
+      animation: ball-square-clockwise-spin 1s infinite ease-in-out;
+    }
+    .ball1 {
+      position: absolute;
+      left: 0;
+      top: 0;
+      animation-delay:-0.875s;
+      -webkit-animation-delay:-0.875s;
+    }
+    .ball2 {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      animation-delay: -0.75s;
+    }
+    .ball3 {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      animation-delay: -0.625s;
+    }
+    .ball4 {
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      animation-delay: -0.5s;
+    }
+    .ball5 {
+      position: absolute;
+      top: 100%;
+      left: 100%;
+      animation-delay: -0.375s;
+    }
+    .ball6 {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      animation-delay: -0.25s;
+    }
+    .ball7 {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      animation-delay: -0.125s;
+    }
+    .ball8 {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      animation-delay: 0s;
+    }
+    @keyframes ball-square-clockwise-spin {
+      0%,
+      40%,
+      100% {
+        transform: scale(0.4);
+      }
+
+      70% {
+        transform: scale(1);
+      }
+    }
+  </style>
+</html>
