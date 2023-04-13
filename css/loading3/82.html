@@ -1,0 +1,43 @@
+<html>
+    <!-- 76 77 78都比较简单 -->
+  <div class="loading"></div>
+  <style>
+    .loading {
+      display: block;
+      width: 48px;
+      position: relative;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid gray;
+      border-top-color:transparent;
+      animation: rotation 2s linear infinite;
+    }
+    .loading::after {
+      display: inline-block;
+      position: absolute;
+      /* 修改一下位置 要不然会沿大圆轨道转圈 */
+      top:0;
+      left:0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      content: "";
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid orange;
+      border-top-color:transparent;
+      animation: rotation 1s linear infinite;
+      transform-origin: center center;
+    }
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</html>

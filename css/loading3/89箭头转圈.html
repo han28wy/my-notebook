@@ -1,0 +1,35 @@
+<html>
+  <body>
+    <div class="loading"></div>
+  </body>
+  <style>
+    .loading {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      position: relative;
+      display: inline-block;
+      border: 4px solid #ddd;
+      border-bottom-color: transparent;
+      animation: rotation 1s linear infinite;
+    }
+    .loading::before {
+      content: "";
+      border: 10px solid transparent;
+      border-right-color: #ddd;
+      transform: rotate(-40deg);
+      position: absolute;
+      left: 30px;
+      top: 32px;
+    }
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</html>

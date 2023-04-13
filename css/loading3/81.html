@@ -1,0 +1,41 @@
+<html>
+    <!-- 76 77 78都比较简单 -->
+  <div class="loading"></div>
+  <style>
+    .loading {
+      display: block;
+      width: 48px;
+      position: relative;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid gray;
+      animation: rotation 1s linear infinite;
+    }
+    .loading::after,.loading::before {
+      display: inline-block;
+      position: absolute;
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+     background-color: orange;
+    }
+    .loading::before{
+      top: 0;
+      left:0;
+    }
+    .loading::after{
+      bottom: 0;
+      right: 0;
+    }
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</html>

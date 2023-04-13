@@ -1,0 +1,48 @@
+<html>
+  <body>
+    <div class="loading"></div>
+  </body>
+  <style>
+    .loading{
+      width: 63px;
+      display: block;
+      margin-top:50px
+    }
+    .loading::before {
+      content:"Loading";
+      display: inline-block;
+      font-size: large;
+      font-weight: 300;
+      color: lightgrey;
+      width: 32px;
+      animation: floating 1s ease-out infinite alternate;
+    }
+    .loading::after {
+      display: inline-block;
+      content: "";
+      width: 64px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: lightblue;
+      animation: loading-animation 1s ease-out infinite alternate;
+    }
+    @keyframes floating {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-25px);
+      }
+    }
+    @keyframes loading-animation {
+      0% {
+        transform: scale(0.8);
+      }
+
+      100% {
+        transform: scale(1.2);
+      }
+    }
+  </style>
+</html>

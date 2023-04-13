@@ -1,0 +1,24 @@
+<html>
+  <body>
+    <div class="loading"></div>
+  </body>
+  <style>
+    .loading {
+      border: 24px solid gainsboro;
+      border-radius: 50%;
+      border-bottom-color: orange;
+      display: inline-block;
+      position: relative;
+      animation: rotation 1s linear infinite;
+    }
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</html>

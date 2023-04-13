@@ -1,0 +1,36 @@
+<html>
+  <body>
+    <div class="loading">Loading</div>
+  </body>
+  <style>
+    .loading {
+      display: inline-block;
+      color: #ddd;
+      position: relative;
+      font-size: 28px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .loading::after {
+      content: "";
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background-color: #ddd;
+      position: absolute;
+      right: -5px;
+      bottom: 6px;
+      animation: loading 1s linear infinite;
+    }
+    @keyframes loading {
+      0% {
+        box-shadow: 10px 0 rgba(255, 255, 255, 0), 20px 0 rgba(255, 255, 255, 0);
+      }
+      50% {
+        box-shadow: 10px 0 #ddd, 20px 0 rgba(255, 255, 255, 0);
+      }
+      100% {
+        box-shadow: 10px 0 #ddd, 20px 0 #ddd;
+      }
+    }
+  </style>
+</html>

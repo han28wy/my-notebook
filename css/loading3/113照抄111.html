@@ -1,0 +1,70 @@
+<div class="loading">Load&nbsp;ng</div>
+
+<style>
+    .loading {
+      display: inline-block;
+      margin-top:50px;
+      color: #ddd;
+      position: relative;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.083333em;
+    }
+
+    .loading::before {
+      content: "";
+      position: absolute;
+      right: 1.458333em;
+      bottom: 0.408333rem;
+      height: 0.583333em;
+      width: 0.104166em;
+      background: currentColor;
+      /* animation: loading-animation-l 1s linear infinite alternate;S */
+    }
+
+    .loading::after {
+      content: "";
+      width: 0.23rem;
+      height: 0.23rem;
+      position: absolute;
+      left: 2.61em;
+      top: 0.041em;
+      border-radius: 50%;
+      background: currentColor;
+      animation: loading-animation 1s linear infinite alternate;
+    }
+
+    @keyframes loading-animation-l {
+      0% {
+        box-shadow: 0 -0.125em, -2.583333em -0.145833em;
+      }
+
+      25%,
+      75% {
+        box-shadow: 0 0px, -2.583333em -0.145833em;
+      }
+
+      100% {
+        box-shadow: 0 0px, -2.583333em -0.333333em;
+      }
+    }
+
+    @keyframes loading-animation {
+      0% {
+      transform: translateY(0.16666em) scaleY(1) scaleX(1.25);
+    }
+
+    25%,
+    75% {
+      transform: translateY(-0.104166em) scaleY(1.2) scaleX(1);
+    }
+
+    50% {
+      transform: translateY(-0.208333em) scaleY(1) scaleX(1);
+    }
+
+    100% {
+      transform: translateY(0.16666em) scaleY(0.8) scaleX(0.8);
+    }
+  }
+</style>
