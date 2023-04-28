@@ -207,3 +207,6 @@ inline:创建行级元素，高度，行高以及底边距不可改变。多个�
 inline-block:
 默认的宽度为内容决定；可以设置宽高，会覆盖默认的宽度
 各个方向的margin和padding都有效;
+
+### chrome可以查看代码覆盖程度，包括css
+在更多工具-coverage开启
