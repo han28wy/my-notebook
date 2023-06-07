@@ -1,0 +1,144 @@
+### Dockerfile 文件
+
+```
+1、FROM hub.komect.com:10443/hybase/openresty:1.15.8.3
+// 指定了基础镜像，即使用 hub.komect.com 上的 hybase/openresty:1.15.8.3 镜像作为基础镜像。该镜像是一个基于 OpenResty 的 Web 服务器，其中包含了 Nginx 和 LuaJIT 等组件，可以用于构建高性能 Web 应用程序
+2、WORKDIR /apprun
+// 指定了工作目录，即将 /apprun 目录作为容器内部的工作目录
+3、ADD dashabigov/dashabigov.tar.gz /apprun/
+// 将文件添加到 Docker 镜像中
+4、ADD nginx.conf /usr/local/nginx/conf/
+```
+
+上面四行命令在 jenkins 日志上会显示，step1/4-4/4
+执行完输出：Successfully tagged hub.komect.com:10443/aeyecloud/dashabigov:5._._
+
+用于构建一个基于 OpenResty 的镜像。该镜像包含了一个名为 dashabigov 的应用程序和一个名为 nginx.conf 的 Nginx 配置文件。
+
+### Jenkinsfile
+
+jenkins pipeline 脚本，用于在 docker 容器中构建一个 node.js 应用程序。
+使用 node12.4 为环境
+build 命令执行了：安装 cnpm 工具， 下载依赖
+
+```
+pipeline {
+    agent { docker 'node:12.4' }
+    stages {
+        stage('Build') {
+            steps {
+                dir('dashabigov') {
+                    sh 'npm install -g cnpm'
+                    sh 'cnpm install'
+                    echo 'install success'
+                }
+            }
+        }
+    }
+}
+```
+
+### k8s(Kubernetes) 资源清单 dashabiems-dev.yml
+Service 部分
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: dashabiems
+  namespace: dashabi-dev
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    app: dashabiems
+```
+
+定义了一个名为 dashabiems 的 Service，用于将流量路由到运行 dashabiems 应用程序的 Pod 中。该 Service 监听端口为 80，使用 TCP 协议，并将流量路由到 app: dashabiems 标签匹配的 Pod 中。
+
+Deployment 部分
+
+```
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dashabiems
+  namespace: dashabi-dev
+spec:
+  replicas: 1 // 指定了需要创建的 Pod 数量
+  template: // Pod 模板，用于创建 Pod
+    metadata:
+      labels:
+        app: dashabiems // Pod 的标签
+    spec:
+      imagePullSecrets: // 从私有镜像仓库拉取镜像的认证信息
+      - name: harbor-secret
+      containers: // 要运行的容器是dashabiems
+      - name: dashabiems
+        image: $IMAGE
+        imagePullPolicy: Always
+        args: ["-c","/usr/local/nginx/conf/nginx.conf"] // 将 Nginx 的配置文件作为参数传递给容器
+        ports:
+        - containerPort: 80
+        livenessProbe: // 容器的健康检查方式，这里是通过 TCP Socket 检查端口 80 是否可用
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources: // 容器的资源限制，这里是 CPU 和内存的限制
+          limits:
+            cpu: 0.2
+            memory: 0.4Gi
+          requests:
+            cpu: 0.1
+            memory: 0.1Gi
+
+```
+
+用于创建和管理运行 dashabiems 应用程序的 Pod
+
+### jenkins 配置文件里 excute shell
+```
+#!/bin/bash
+################## 初始化参数 #########################
+project=dashabigov
+product=dashabigov
+dir=govnation
+cd ${WORKSPACE}/project
+git reset --hard ${code_revision}
+git log |sed -n '1p'| awk '{print $2}'|cut -b 1-8
+revision=`git log |sed -n '1p'| awk '{print $2}'|cut -b 1-8`
+echo revision=$revision
+cd ${WORKSPACE}/project
+
+if [ $env == "全国生产" ];then
+npm run build:govnation
+#nohup npm run build:govnation > a.log 2>&1 &
+#sleep 180;
+#num=`grep "Build complete" a.log |wc -l`
+#if [ $num = 1 ];then
+#echo "build success and deploy..."
+cd ${WORKSPACE}/project/${product}
+tar --exclude=${product}.tar.gz -czvf ${product}.tar.gz ./*
+cd ${WORKSPACE}/project
+docker build -t hub.komect.com:10443/aeyecloud/${product}:${prod_version}-${revision}-RELEASE -f Dockerfile .
+docker login -u devops-andlink -p $devopsandlink hub.komect.com:10443
+docker push hub.komect.com:10443/aeyecloud/${product}:${prod_version}-${revision}-RELEASE
+docker rmi hub.komect.com:10443/aeyecloud/${product}:${prod_version}-${revision}-RELEASE
+fi
+```
+
+翻译一下部署生产环境：
+这段脚本用于在生产环境中构建并部署一个 Docker 镜像：
+
+1. 首先，执行 `npm run build:govnation` 命令进行构建。
+2. 然后，进入项目目录，使用 `tar` 命令将项目文件打包成一个 tar.gz 文件。
+3. 接着，回到项目的根目录，执行 `docker build` 命令，将项目的 Dockerfile 构建成一个 Docker 镜像。其中，使用了 `$prod_version` 和 `$revision` 变量作为镜像的版本信息。
+4. 登录 Docker 仓库，使用 `docker login` 命令进行身份验证。
+5. 接着，使用 `docker push` 命令将构建好的 Docker 镜像推送到 Docker 仓库中。
+6. 最后，使用 `docker rmi` 命令删除本地的 Docker 镜像。
