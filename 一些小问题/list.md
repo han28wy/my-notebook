@@ -210,3 +210,13 @@ inline-block:
 
 ### chrome可以查看代码覆盖程度，包括css
 在更多工具-coverage开启
+
+### el-form-item的div的内容太长显示省略号
+style=" width: 100px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"
+
+### el-tag太长显示省略号
+      if (val && val.length > 19) {
+        return val.substring(0, 18) + '...';
+      } else {
+        return val;
+      }
