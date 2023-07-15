@@ -1,7 +1,7 @@
 ## 工具函数整理
 
 ### 时间日期选择器el-date-picker 不能选择之前日期，不能选择当前时间以前（时+分）
- ``` js
+ ```
  <el-form-item
           requried
           label="定时推送时间:">
@@ -35,4 +35,29 @@
       }
     }
   },
+```
+
+### 获取两个日期间隔内，是否包含目标星期
+```
+     containsTargetWeek(startTime, endTime, target) {
+        let res = false;
+        // 获取间隔多少天
+        let day1 = Date.parse(startTime);
+        let day2 = Date.parse(endTime);
+        let diff = Math.abs(day2 - day1);
+        let totalDays = 1 + Math.floor(diff / (1000 * 3600 * 24));
+        // 如果间隔时间小于7天，再检查周几是否在时间间隔内
+        if (totalDays < 8) {
+        target = target === '7' ? '0' : target;
+          for (let i = 0; i < totalDays; i++) {
+            let curr = moment(day1).add(i, 'day').day();
+            if (target === curr.toString()) {
+              // 包含目标周
+              res = true;
+            }
+          }
+        } else {
+          res = true
+        }
+    }
 ```
