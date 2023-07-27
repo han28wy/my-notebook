@@ -1,3 +1,37 @@
+### vue异步组件动态加载  和 <component>的比较
+1 第一种可以在点击事件后再加载，第二种在父组件初始化时候就加载了
+2 异步加载子组件
+```
+<template>
+  <div>
+    <button @click="loadChildComponent">加载子组件</button>
+    <div v-if="showChildComponent">
+      <child-component />
+    </div>
+  </div>
+</template>
+
+export default {
+  data() {
+    return {
+      showChildComponent: false
+    }
+  },
+  methods: {
+    loadChildComponent() {
+      // 使用 webpack 的 `import()` 语法异步加载子组件
+      const ChildComponent = () => import('./ChildComponent.vue')
+      // 注册异步组件
+      this.$options.components.ChildComponent = ChildComponent
+      //这还有一个注册组件的方法  Vue.component('child-component', () => import('./ChildComponent.vue'))
+      // 显示子组件
+      this.showChildComponent = true
+
+    }
+  }
+}
+```
+
 ### vue.extend用法 实现MessageBox弹窗
 #### 1 正常写一个子组件
 ```
