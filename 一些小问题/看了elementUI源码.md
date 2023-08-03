@@ -1,3 +1,11 @@
+### git clone --depth=1 <repository_url>
+限制克隆操作只获取最近的一次提交记录，而不会拉取完整的提交历史。这可以有效减少克隆操作的时间和占用的存储空间，特别是对于大型仓库或者只需要最新代码的情况下。
+
+只包含最新的提交记录。这意味着你将无法查询和访问以前的提交记录，也无法切换到其他分支。如果你需要完整的提交历史记录和完整的仓库功能，可以省略 --depth=1 选项或指定一个较大的深度值。
+
+### git remote add
+git remote add origin https://github.com/user/repo.git 远程仓库的 URL https://github.com/user/repo.git 添加到本地 Git 仓库，并将其别名设置为 origin。
+
 ### prop里可以加校验的
       effect: {
         type: String,
@@ -62,6 +70,10 @@ vm.$on(event, callback) event 表示要监听的自定义事件的名称，可�
 this.$slots 对象包含了当前组件的所有插槽内容，其中每个插槽都是一个数组。如果某个插槽没有内容，则对应的数组为空数组。可以通过插槽名或缺省插槽名称来访问对应的插槽内容;
 this.$slots.header 访问的是名为 header 的具名插槽的内容，
 this.$slots.default 访问的是缺省插槽的内容。
+
+### this.$attrs
+可以在子组件里拿到父组件传过来但是没有在props里接收的值。
+v-bind="$attrs" 使用
 
 ### vue @click.native和@click.stop和@click.self
 @click.native 修饰符用于绑定原生 DOM 事件，而不是组件内部的事件。如果一个组件包含了一个原生的 button 元素，并希望在该元素被点击时触发某个事件，那么就可以使用 @click.native 修饰符来绑定该事件。
