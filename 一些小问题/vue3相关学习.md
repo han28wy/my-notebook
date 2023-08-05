@@ -67,3 +67,7 @@ watch(myData, () => {
   });
 });
 ```
+### defineOptions()
+### defineExpose
+### getCurrentInstance() 获取上下文
+### provide和inject

@@ -79,3 +79,44 @@ v-bind="$attrs" 使用
 @click.native 修饰符用于绑定原生 DOM 事件，而不是组件内部的事件。如果一个组件包含了一个原生的 button 元素，并希望在该元素被点击时触发某个事件，那么就可以使用 @click.native 修饰符来绑定该事件。
 @click.stop 修饰符用于阻止事件冒泡。当一个元素被点击时，该事件会向上冒泡到父元素，并触发父元素上相应的事件处理函数。使用 @click.stop 修饰符可以阻止该事件继续向上冒泡，从而避免触发父元素上的事件处理函数。
 @click.self 修饰符用于限制事件只在当前元素本身被点击时才触发。如果一个元素包含了子元素，并希望只在该元素本身被点击时触发某个事件，而不是在子元素被点击时触发该事件，那么就可以使用 @click.self 修饰符来限制事件只在当前元素本身被点击时触发。
+
+### this.dispatch是怎么实现的
+总结：在 Element UI 组件层次结构中查找具有特定 componentName 的父组件，并在找到该组件后触发该组件上的事件
+```
+    dispatch(componentName, eventName, params) {
+      var parent = this.$parent || this.$root; //它被初始化为当前组件的父组件 ($parent) 或根组件 ($root)
+      var name = parent.$options.componentName; //父组件的选项中的 componentName 值赋给变量 name
+
+      while (parent && (!name || name !== componentName)) {
+        parent = parent.$parent;
+
+        if (parent) {
+          name = parent.$options.componentName;
+        }
+      }
+      if (parent) {
+        parent.$emit.apply(parent, [eventName].concat(params));
+      }
+    },
+```
+举例在实现el-form-item里的使用
+```
+    mounted() {
+      if (this.prop) {
+        this.dispatch('ElForm', 'el.form.addField', [this]);
+
+        let initialValue = this.fieldValue;
+        if (Array.isArray(initialValue)) {
+          initialValue = [].concat(initialValue);
+        }
+        Object.defineProperty(this, 'initialValue', {
+          value: initialValue
+        });
+
+        this.addValidateEvents();
+      }
+    },
+    beforeDestroy() {
+      this.dispatch('ElForm', 'el.form.removeField', [this]);
+    }
+```
