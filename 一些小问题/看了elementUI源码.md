@@ -120,3 +120,22 @@ v-bind="$attrs" 使用
       this.dispatch('ElForm', 'el.form.removeField', [this]);
     }
 ```
+
+### 发现了一个组合函数的方法
+将这些函数从右到左依次组合起来，并返回一个新的函数。
+```
+export function compose(...funcs) {
+  if (funcs.length === 0) {
+    return arg => arg;
+  }
+  if (funcs.length === 1) {
+    return funcs[0];
+  }
+  return funcs.reduce((a, b) => (...args) => a(b(...args)));
+}
+```
+```
+使用：
+const chains = compose(this.setColumnRenders, this.setColumnWidth, this.setColumnForcedProps);
+column = chains(column);
+```
