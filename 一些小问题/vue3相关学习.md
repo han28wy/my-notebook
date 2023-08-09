@@ -68,8 +68,11 @@ watch(myData, () => {
 });
 ```
 ### defineOptions()
+可以设置componentName
 ### defineExpose
 子组件暴露出去，可以被父组件获取的值，调用的方法。
+### getCurrentInstance() 
+获取上下文
 
-### getCurrentInstance() 获取上下文
 ### provide和inject
+父组件用provide可以给所有子组件传参
