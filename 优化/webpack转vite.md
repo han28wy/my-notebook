@@ -1,4 +1,4 @@
-记录打包工具从webpack2.9.0升级到vite的历程：
+### 记录打包工具从webpack2.9.0升级到vite的历程：
 项目：vue2.3+elementUI,vux,iview+webpack2.9.0
 实施过程：
 1 熟悉vite; 用vite3+vue2.7搭建框架,引入element,iview等本项目内容，先熟悉一波操作；
