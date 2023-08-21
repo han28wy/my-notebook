@@ -223,6 +223,9 @@ style=" width: 100px;white-space: nowrap;overflow: hidden;text-overflow: ellipsi
 
 ### 显示网站图标，解决不显示问题 favicon
 在根目录放favicon.ico图标文件；
+有两种引入方法：
+<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+<link rel="icon" href="favicon.ico" />
 图标和title本应显示在<head>里，但是都显示在<body>里导致无法正常显示图标
 ```
 <head>
