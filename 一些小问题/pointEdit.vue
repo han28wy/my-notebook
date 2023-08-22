@@ -4,9 +4,9 @@
       <div class="topBlock">
         <div class="tag">
           <el-tag style="height:auto;">
-            *用户一天内登录多次或同一应用使用多次仅计算一次积分，不重复累计
+            *用户
             <br >
-            *积分有效期：31天
+            *有效期：31天
           </el-tag>
         </div>
         <el-form
@@ -85,7 +85,7 @@
             prop="integralName"
             maxlength="20"
             show-word-limit
-            label="积分名称"
+            label="名称"
           >
             <el-input
               v-model="config.integralName"
@@ -93,11 +93,11 @@
               placeholder="请输入名称"
             />
           </el-form-item>
-          <el-form-item prop="type" label="积分类型">
-            <el-radio v-model="config.type" label="1">活跃积分</el-radio>
+          <el-form-item prop="type" label="类型">
+            <el-radio v-model="config.type" label="1">活跃</el-radio>
           </el-form-item>
           <el-form-item prop="giveType" label="赠送方式">
-            <el-radio v-model="config.giveType" label="1">固定积分</el-radio>
+            <el-radio v-model="config.giveType" label="1">固定</el-radio>
           </el-form-item>
           <el-form-item prop="getType" label="获取方式">
             <div>
@@ -128,7 +128,7 @@
               </div>
             </div>
           </el-form-item>
-          <!-- 赠送积分 登录 -->
+          <!-- 赠送 登录 -->
           <el-form-item
             prop="loginPoint"
             v-if="config.isTypeLogin"
@@ -138,11 +138,11 @@
             <el-input
               class="input1"
               v-model="config.loginPoint"
-              placeholder="请填写赠送积分"
+              placeholder="请填写赠送"
             />
-            {{ config.isTypeLogin ? '积分' : '' }}
+            {{ config.isTypeLogin ? '' : '' }}
           </el-form-item>
-          <!-- 赠送积分 所有app -->
+          <!-- 赠送 所有app -->
           <el-form-item
             prop="allServicePoint"
             v-if="serviceCheckbox[0] === '1'"
@@ -152,11 +152,11 @@
             <el-input
               class="input1"
               v-model="config.allServicePoint"
-              placeholder="请填写赠送积分"
+              placeholder="请填写赠送"
             />
-            {{ serviceCheckbox[0] === '1' ? '积分' : '' }}
+            {{ serviceCheckbox[0] === '1' ? '' : '' }}
           </el-form-item>
-          <!-- 赠送积分 部分app -->
+          <!-- 赠送 部分app -->
           <el-form-item
             prop="someServicePoint"
             v-if="serviceCheckbox[0] === '2'"
@@ -174,9 +174,9 @@
                   <el-input
                     class="input2"
                     v-model="item.integralValue"
-                    placeholder="请输入积分"
+                    placeholder="请输入"
                   />
-                  积分
+                  
                 </div>
               </div>
             </div>
@@ -320,7 +320,7 @@ export default {
         ],
         integralName: {
           required: true,
-          message: '请填写积分名称',
+          message: '请填写名称',
           trigger: 'blur'
         },
         type: {
@@ -368,7 +368,7 @@ export default {
     getAreaNamesAndUuids() {
       this.axios
         .get(
-          '/operation/integralMarket/integralConfig/' +
+          '/integralMarket/integralConfig/' +
             this.integralUuid +
             '/getAreaUuidAndNamesList'
         )
@@ -521,7 +521,7 @@ export default {
         // 获取areaNames 和 areaUuid
         this.axios
           .get(
-            '/operation/integralMarket/integralConfig/' +
+            '/integralMarket/integralConfig/' +
               this.integralUuid +
               '/getAreaUuidAndNamesList'
           )
@@ -586,7 +586,7 @@ export default {
         unformat: 1
       };
       this.axios
-        .post('/operation/integralMarket/integralConfig/save', params)
+        .post('/integralMarket/integralConfig/save', params)
         .then(res => {
           if (res.recode === 200) {
             this.$Message.success('操作成功');
