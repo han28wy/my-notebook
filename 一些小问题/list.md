@@ -220,3 +220,22 @@ style=" width: 100px;white-space: nowrap;overflow: hidden;text-overflow: ellipsi
       } else {
         return val;
       }
+
+### 显示网站图标，解决不显示问题 favicon
+在根目录放favicon.ico图标文件；
+有两种引入方法：
+<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+<link rel="icon" href="favicon.ico" />
+图标和title本应显示在<head>里，但是都显示在<body>里导致无法正常显示图标
+```
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <param name='AllowScriptAccess' value='never'/> 把这一行放到后面body里，就能显示图标了！！！
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <script charset="utf-8" src="./static/kindeditor/kindeditor-all.js"></script>
+    <script charset="utf-8" src="./static/kindeditor/themes/default/default.css"></script>
+    <script charset="utf-8" src="./static/kindeditor/lang/zh-CN.js"></script>
+</head>
+```
