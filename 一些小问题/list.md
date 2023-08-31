@@ -239,3 +239,18 @@ style=" width: 100px;white-space: nowrap;overflow: hidden;text-overflow: ellipsi
     <script charset="utf-8" src="./static/kindeditor/lang/zh-CN.js"></script>
 </head>
 ```
+
+### 不能输入emoji,能输入中英文标点 正则校验
+```
+      <van-field
+        v-if="currentContentType === '图文'"
+        :rules="[{ required: true, message: '请填写内容' },
+        { pattern: /(ud83c[udf00-udfff])|(ud83d[udc00-ude4fude80-udeff])|[u2600-u2B55]|\u3002|\uff1f|\uff01|\uff0c|\u3001|\uff1b|\uff1a|\u201c|\u201d|\u2018|\u2019|\uff08|\uff09|\u300a|\u300b|\u3010|\u3011|\u007e/g, message: '请输入合法内容' }
+      ]"
+        v-model="message"
+        rows="4"
+        autosize
+        type="textarea"
+        placeholder="请输入"
+      />
+```

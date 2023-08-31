@@ -85,4 +85,9 @@ zip.writeZip(zipPath, (err) => {
 fs.renameSync(zipPath, './newName.zip');
 console.log('压缩文件已重命名为 newName.zip');
 ```
- 
+
+### 本地调试elementUI源码
+#### 修改组件引用地址
+import ElButton from 'element-ui/packages/button/src/button.vue'
+components: {ElButton},
+#### npm link

@@ -32,6 +32,87 @@ export default {
 }
 ```
 
+### vue2 创建一个全局toast组件，通过show()和hide()方法控制显示和隐藏
+components/toast/toast.vue
+```
+<template>
+  <div v-show="visible" class="toast">{{ message }}</div>
+</template>
+
+<script>
+export default {
+  props: ['message'],
+  data() {
+    return {
+      visible: false
+    };
+  },
+  methods: {
+    show() {
+      this.visible = true;
+      setTimeout(() => {
+        this.hide();
+      }, 3000);
+    },
+    hide() {
+      this.visible = false;
+    }
+  }
+};
+</script>
+
+<style scoped>
+.toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+}
+</style>
+```
+
+components/toast/index.js
+```
+// plugins/toast.js
+import Vue from 'vue';
+import ToastComponent from '@/components/Toast.vue';
+
+const ToastConstructor = Vue.extend(ToastComponent);
+
+function show() {
+  const toastInstance = new ToastConstructor({
+    el: document.createElement('div'),
+    propsData: {}
+  });
+
+  document.body.appendChild(toastInstance.$el);
+  toastInstance.show();
+}
+
+function hide() {
+  const toastInstance = new ToastConstructor();
+  toastInstance.hide();
+}
+
+export default {
+  install(Vue) {
+    Vue.prototype.$evaluate = {
+      show,
+      hide
+    };
+  }
+};
+```
+main.js
+```
+import Toast from '@/components/toast'
+Vue.use(Toast)
+```
+
+
 ### vue.extend用法 实现MessageBox弹窗
 #### 1 正常写一个子组件
 ```
