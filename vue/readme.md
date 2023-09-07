@@ -41,14 +41,15 @@ components/toast/toast.vue
 
 <script>
 export default {
-  props: ['message'],
   data() {
     return {
-      visible: false
+      visible: false,
+      message: ''
     };
   },
   methods: {
-    show() {
+    show(val) {
+      this.message = val.message;
       this.visible = true;
       setTimeout(() => {
         this.hide();
@@ -82,14 +83,16 @@ import ToastComponent from '@/components/Toast.vue';
 
 const ToastConstructor = Vue.extend(ToastComponent);
 
-function show() {
+function show(options = {}) {
   const toastInstance = new ToastConstructor({
     el: document.createElement('div'),
-    propsData: {}
+    data: {
+      message: '',
+    }
   });
 
   document.body.appendChild(toastInstance.$el);
-  toastInstance.show();
+  toastInstance.show(options);
 }
 
 function hide() {
@@ -111,7 +114,10 @@ main.js
 import Toast from '@/components/toast'
 Vue.use(Toast)
 ```
-
+使用：
+this.$toast.show({
+  message: 'hello',
+})
 
 ### vue.extend用法 实现MessageBox弹窗
 #### 1 正常写一个子组件
