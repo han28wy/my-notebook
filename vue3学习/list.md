@@ -9,3 +9,10 @@ Vue3 ：使用 modelValue 作为默认的属性名，并使用 update:modelValue
 在子组件使用：emits('update:modelValue', newValue)
 Vue2: 是一个语法糖，是将 value 属性和 input 事件绑定到组件上，以实现双向数据绑定。默认情况下，v-model 指令会将父组件传递给子组件的值绑定到子组件的 value 属性上，并监听子组件的 input 事件来同步更新父组件的值。如果需要使用其他属性名和事件名，可以使用 model 选项来进行配置。
 子组件使用：this.$emit('input', newValue)
+
+### ref和reactive的区别（源码角度分析）
+reactive用于对象和数组。能把对象的每个属性都转换成响应式；
+ref处理基本类型时，用defineProperty完成响应式，处理非基本类型实际上内部使用reactive；
+解构时：ref可以安全解构，reactive解构可能失去响应式，所以用toRefs或shallowRefs
+返回类型：ref返回响应式对象，.value将指向原始值；reactive返回原始对象的响应式版本
+
