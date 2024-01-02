@@ -254,3 +254,29 @@ style=" width: 100px;white-space: nowrap;overflow: hidden;text-overflow: ellipsi
         placeholder="请输入"
       />
 ```
+
+### cookie
+设置Cookie: document.cookie = "name=value; path='/'; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+获取特定cookie:
+```
+function getCookie(name) {
+  var cookieArr = document.cookie.split("; ");
+  for (var i = 0; i < cookieArr.length; i++) {
+    var cookiePair = cookieArr[i].split("=");
+    if (cookiePair[0] === name) {
+      return cookiePair[1];
+    }
+  }
+  return null;
+}
+
+var username = getCookie("username");
+console.log(username); // 输出Cookie值
+
+```
+删除cookie: 它的过期时间为一个过去的时间；
+限制：只能在设置它们的域名下访问和修改；
+使用限制：是存储在浏览器中的，因此敏感信息不应使用Cookie,应使用Session储存；
+path:指定可以访问该Cookie的路径;如果在路径 /app 下创建了一个Cookie，那么只有在路径为 /app 或其子路径下的页面才能访问该Cookie。而在路径 / 下的页面将无法访问该Cookie;
+匹配实例：path属性是基于路径前缀匹配的，并不是精确匹配。也就是说，如果设置了path=/app，那么路径为 /app、/app/home、/app/profile 等都可以访问该Cookie。而路径为 / 或其他不以 /app 开头的路径将无法访问该Cookie
+默认path:自动设置为创建该Cookie的页面的路径；所以最好设置为根路径（'/'）下的cookie;
