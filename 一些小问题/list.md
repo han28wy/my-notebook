@@ -53,6 +53,17 @@
       }
     },
 ```
+vue-pdf可以带header的
+```
+this.filePath = pdf.createLoadingTask({
+  url: this.url,
+  withCredentials: false,
+  httpHeaders: {
+    Token: this.token,
+  },
+})
+```
+
 
  ### forEach没有return; 
  改用for循环，或者用break结束
