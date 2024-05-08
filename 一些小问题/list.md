@@ -1,4 +1,58 @@
 遗忘曲线：5min-30min-12h-1d-2d-4d-7d-15d
+### 后端返回链接 怎么用vue-pdf预览
+```
+<!-- 翻页 -->
+ <pdf
+            :src="filePath"
+            :page="currentPage"
+            @num-pages="pageCount = $event"
+            @page-loaded="currentPage = $event"
+          />
+// 处理链接
+    getPdfUrl() {
+      this.loading = true
+      const params = {}
+      this.axios
+        .get(url, { params, responseType: 'arraybuffer' })
+        .then((res) => {
+          const binaryData = []
+          binaryData.push(res)
+          // 获取blob链接
+          const urlPath = window.URL.createObjectURL(
+            new Blob(binaryData, { type: 'application/pdf' }),
+          )
+          // 创建pdfLoadingTask
+          this.filePath = pdf.createLoadingTask(urlPath)
+          this.filePath.promise
+            .then((pdf) => {
+              // 总页数
+              this.totalPageSize = pdf.numPages
+              this.loading = false
+              console.log(this.pageNum, 'this.pageNum  ')
+            })
+            .catch((err) => {
+              this.loading = false
+              console.error('pdf 加载失败', err)
+            })
+        })
+        .catch(() => {
+          this.loading = false
+          Toast.fail('文件加载失败')
+        })
+    },
+<!-- 下一页 -->
+        next() {
+      if (this.currentPage < this.totalPageSize) {
+        this.currentPage += 1
+      }
+    },
+    <!-- 上一页 -->
+    previous() {
+      if (this.currentPage > 1) {
+        this.currentPage -= 1
+      }
+    },
+```
 
  ### forEach没有return; 
  改用for循环，或者用break结束
