@@ -26,3 +26,18 @@ webpack.base.conf.js配置
         ]
   },
 ```
+#### 试看功能 非会员试看30s内容
+playing状态时倒计时，pause和waiting状态暂停计时；
+play状态不要加倒计时，会重复；
+
+```
+  this.player.on('pause', () => {
+          clearInterval(this.timer)
+        })
+        this.player.on('waiting', () => {
+          clearInterval(this.timer)
+        })
+        this.player.on('playing', () => {
+          this.countDown()
+        })
+```
