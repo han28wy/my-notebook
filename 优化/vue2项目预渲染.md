@@ -12,7 +12,7 @@
     },
 ```
 2 webpack配置修改
-Vue.config.js
+devServer加上
     historyApiFallback: {
       index: '/index.html'
 }
@@ -26,3 +26,5 @@ location /location{
 router/index.js里面增加配置
     mode: 'history',
     base: '/******/',
+
+#### prerender-spa-plugin插件
